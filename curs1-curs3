@@ -1,0 +1,454 @@
+curs1
+
+function ex1(){
+	$array = array(1,2,3,4,34,234,234,3,5,65,5,5,5,2,34131,231,23,123,12,312,3,1,1,11,23,3,43,6,7,98,9,5,5654);
+	$givenElement = 5;
+	$apparence = 0;
+	foreach( $array as $key ){
+	    if ( $givenElement == $key){
+	    	$apparence ++;
+	    }
+	}
+	if ($apparence > 0) {
+		echo (" The $givenElement appears $apparence times") ;
+		} else {
+		echo ('It dosen\'t appear');
+	}
+}
+function ex2(){
+	$array = array();
+	$randomElements = rand(1,1000);
+	for ($i = 0;$i < $randomElements;$i++){
+		$array[]=rand();
+	}
+	foreach( $array as $key ){
+		echo ("\n $key");
+	}
+}
+function ex3(){
+	$array = array(1,2,3,4,5,6,7,8,9);
+	$array=array_reverse($array);
+	foreach( $array as $key ){
+		echo ("\n $key");
+	}
+}
+function ex4_1(){
+	$array = array();
+	$randomElements = rand(1,1000);
+	for ($i = 0;$i < $randomElements;$i++){
+		$array[]=rand();
+	}
+	return $array;
+}
+function ex4(){
+	$array = ex4_1();
+	$a = count($array);
+	for($i = 0;$i < $a-1;$i++ ){
+		for($j = $i;$j < $a;$j++){
+			if($array[$i]>$array[$j]){
+				$aux = $array[$i];
+				$array[$i] = $array[$j];
+				$array[$j] = $aux;
+			}
+		}
+	}
+	foreach( $array as $key ){
+		echo ("\n $key");
+	}
+}
+function ex5(){
+	$array = array(1,2,3,4,5,6,7,8,9);
+	$arrayAux = $array;
+	for($i = 0;$i < count($array);$i++ ){
+		if($i!=count($array)-1){
+			$array[$i]=$arrayAux[$i+1];
+		}else{
+			$array[$i]=$arrayAux[0];
+		}
+	}
+	foreach( $array as $key ){
+		echo ("\n $key");
+	}
+}
+function ex6(){
+	$array = array();
+	$randomElements = rand(1,1000);
+	$rand = rand(1,100);
+	for ($i = 0;$i < $randomElements;$i++){
+		$array[]=rand(1,100);
+	}
+	foreach( $array as $key ){
+		if($key == $rand){
+			echo('found it');
+			break;//break 1
+		}
+	}
+}
+function ex7(){
+	$array = array(1,2,3,4,5,6,7,8,9);
+	for( $i=0;$i<count($array)/2;$i++ ){
+		$aux=$array[$i];
+		$array[$i]=$array[count($array)-$i-1];
+		$array[count($array)-$i-1]=$aux;
+	}
+	foreach( $array as $key ){
+		echo ("\n $key");
+	}
+}
+function ex8(){
+	$array = array();
+	$randomElements = rand(1,1000);
+	$rand=rand(1,100);
+	for ($i = 0;$i < $randomElements;$i++){
+		$array[]=rand(1,100);
+	}
+	if(in_array($rand,$array)){
+		echo('found');
+	}
+}
+function ex9(){
+	$word = "1";
+	if(strlen($word)==0){
+		echo('Is not a palindrome');
+		return(0);
+	}else{
+		if(strlen($word)==1){
+			echo('Is a palindrome');
+			return(1);
+		}else{
+			for($i=0;$i<strlen($word)/2;$i++){
+				if($word[$i]!=$word[strlen($word)-$i-1]){
+					echo('Is not a palindrome');
+					return(0);
+				}
+			}
+		}
+	echo('Is a palindrome');
+	return(1);
+	}
+}
+
+
+curs 2
+
+
+
+ex1
+
+
+
+<?php
+class Om{
+    private $name;
+    function setName($name){
+        $this->name=$name;
+    }
+    function getName(){
+        return "Hello,my name is ".$this->name;
+    }
+}
+$eu=new Om();
+$eu->setName('Vasile');
+echo($eu->getName());
+?>
+
+
+ex2
+
+
+<?php
+abstract class Vehicle{
+    abstract function getType();
+    abstract function getTerrain();
+    abstract function getModel();
+    function printVehicle(){
+        print $this->getType() .' '. $this->getTerrain().' '. $this->getModel();
+    }
+    function printVehicleSound(){
+        switch($this->getTerrain()){
+            case('Land'):
+                print ' '.'Vroom'."<br>";
+                break;
+            case('Air'):
+                print ' '.'Whizz'."<br>";
+                break;
+            case('Water'):
+                print ' '.'Splash'."<br>";
+                break;
+            default:
+                print ' '.'Accident'."<br>";
+        }
+    }
+}
+class smallCar extends Vehicle
+{
+    function getType() {
+        return "Car";
+    }
+    function getTerrain() {
+        return "Land";
+    }
+    function getModel() {
+        return "Audi";
+    }
+}
+class mediumCar extends Vehicle
+{
+    function getType() {
+        return "Car";
+    }
+    function getTerrain() {
+        return "Land";
+    }
+    function getModel() {
+        return "BMW";
+    }
+}
+class Truck extends Vehicle
+{
+    function getType() {
+        return get_class();
+    }
+    function getTerrain() {
+        return "Land";
+    }
+    function getModel() {
+        return "Scania";
+    }
+}
+class Boat extends Vehicle
+{
+    function getType() {
+        return get_class();
+    }
+    function getTerrain() {
+        return "Water";
+    }
+    function getModel() {
+        return "Eclipse";
+    }
+}
+class Yacht extends Vehicle
+{
+    function getType() {
+        return get_class();
+    }
+    function getTerrain() {
+        return "Water";
+    }
+    function getModel() {
+        return "Azzam";
+    }
+}
+class hotAirBallon extends Vehicle
+{
+    function getType() {
+        return get_class();
+    }
+    function getTerrain() {
+        return "Air";
+    }
+    function getModel() {
+        return "Zepellin";
+    }
+}
+class Plane extends Vehicle
+{
+    function getType() {
+        return get_class();
+    }
+    function getTerrain() {
+        return "Air";
+    }
+    function getModel() {
+        return "Airbus";
+    }
+}
+$Vehicle1=new smallCar();
+$Vehicle1->printVehicle();
+$Vehicle1->printVehicleSound();
+$Vehicle2=new mediumCar();
+$Vehicle2->printVehicle();
+$Vehicle2->printVehicleSound();
+$Vehicle3=new Truck();
+$Vehicle3->printVehicle();
+$Vehicle3->printVehicleSound();
+$Vehicle4=new Yacht();
+$Vehicle4->printVehicle();
+$Vehicle4->printVehicleSound();
+$Vehicle5=new Boat();
+$Vehicle5->printVehicle();
+$Vehicle5->printVehicleSound();
+$Vehicle6=new hotAirBallon();
+$Vehicle6->printVehicle();
+$Vehicle6->printVehicleSound();
+$Vehicle7=new Plane();
+$Vehicle7->printVehicle();
+$Vehicle7->printVehicleSound();
+?>
+
+ex3
+
+controller
+<?php
+require_once 'model.php';
+$calculator = new SalaryCalculator();
+$grossSalary = 5000;
+$taxRate = 0.065;
+$socialRate = 0.25;
+$healthRate = 0.1;
+$netSalary = $calculator->calculateNetSalary($grossSalary, $taxRate, $socialRate, $healthRate);
+require_once 'view.php';
+?>
+model
+<?php
+class SalaryCalculator
+{
+    public function calculateNetSalary($grossSalary, $taxRate, $socialRate, $healthRate)
+    {
+        $taxAmount = $grossSalary * $taxRate;
+        $socialAmount = $grossSalary * $socialRate;
+        $healthAmount = $grossSalary * $healthRate;
+        $netSalary = $grossSalary - ($taxAmount + $socialAmount+ $healthAmount);
+        return $netSalary;
+    }
+}
+?>
+view
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Net Salary Calculation</title>
+</head>
+<body>
+    <h1>Net Salary Calculation</h1>
+    <p>Gross Salary: <?php echo $grossSalary; ?></p>
+    <p>Net Salary: <?php echo $netSalary; ?></p>
+</body>
+</html>
+
+
+curs 3
+
+
+ex1
+<?php
+function calc($a,$b,$operator){
+    if(is_numeric($a)){
+        if(is_numeric($b)){
+            switch($operator){
+                case '+':
+                    return $a+$b;
+                case '-':
+                    return $a-$b;
+                case '*':
+                    return $a*$b;
+                case '/':
+                    if($b != 0){
+                    return $a/$b;
+                    }else{
+                        return 0;
+                    }
+                default:
+                    return "invalid operator";
+            }
+        }else{
+            return "second variable is not a number";
+        }
+    }else{
+        return "first variable is not a number";
+    }
+}
+$a=12;
+$b=34;
+print calc($b,'c','+').' '.calc('c',$b,'+').' '.calc($a,$b,'+').' '.calc($a,$b,'-').' '.calc($a,$b,'*').' '.calc($a,$b,'/').' '.calc($a,0,'/').' '.calc($a,$b,'&');
+?>
+
+ex2
+
+
+<?php
+function Login($username, $password) {
+    $users = file('users.txt', FILE_IGNORE_NEW_LINES);
+    foreach ($users as $user) {
+        list($savedUsername, $savedPassword) = explode(':', $user);
+        if ($savedUsername === $username && $savedPassword === $password) {
+            return true;
+        }
+    }
+    return false;
+}
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    if (!empty($username) && !empty($password)) {
+        if (Login($username, $password)) {
+            echo "Login successful! Welcome, $username!";
+        } else {
+            echo "Invalid credentials. Please try again.";
+        }
+    } else {
+        echo "Please enter both username and password.";
+    }
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form method="post" action="login.php">
+        Username: <input type="text" name="username"><br>
+        Password: <input type="password" name="password"><br>
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>
+<?php
+function verifyUser($username) {
+    $users = file('users.txt', FILE_IGNORE_NEW_LINES);
+    foreach ($users as $user) {
+        list($savedUsername, $savedPassword) = explode(':', $user);
+        if ($savedUsername === $username) {
+            return false;
+            break;
+        }
+    }
+    return true;
+}
+function registerUser($username, $password) {
+    $user = $username . ':' . $password . "\n";
+    file_put_contents('users.txt', $user, FILE_APPEND);
+}
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    if (verifyUser($username) === false){
+        echo "The user already exists";
+    }
+    else{
+        if (!empty($username) && !empty($password)) {
+            registerUser($username, $password);
+            echo "Registration successful! Please log in.";
+        } else {
+            echo "Please enter both username and password.";
+        }
+    }
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Registration</title>
+</head>
+<body>
+    <h2>Register</h2>
+    <form method="post" action="register.php">
+        Username: <input type="text" name="username"><br>
+        Password: <input type="password" name="password"><br>
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>
